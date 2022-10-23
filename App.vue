@@ -9,9 +9,9 @@
     <ul>
       <li
         v-for="item of jsons"
-        :key="item.id"
+        :key="item.transaction"
       >
-        {{ item.name }}
+        {{ item }}
       </li>
     </ul>
   </div>
@@ -29,9 +29,9 @@ export default {
   methods: {
     async process() {
       const res = await axios.post(`http://localhost:3000/jsons`, {
-        name: this.inputDataJson,
+        data: this.inputDataJson,
       });
-      this.jsons = [...this.jsons, res.data];
+      this.jsons = [res.data];
       this.inputDataJson = "";
     },
   },
